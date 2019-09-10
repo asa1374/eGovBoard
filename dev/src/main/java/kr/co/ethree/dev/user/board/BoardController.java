@@ -248,12 +248,12 @@ public class BoardController extends BaseAbstractController {
 		paramMap.put("userId", session.getAttribute("id"));
 		paramMap.put("auth", "U");
 		
-		int ord = Integer.parseInt(paramMap.get("ord").toString());
 		int origin = Integer.parseInt(paramMap.get("origin").toString());
 		
 		paramMap.put("originalNo", origin);
-		paramMap.put("groupOrd", ord +1);
+		System.out.println(boardService.ordcount(paramMap));
 		
+		paramMap.put("groupOrd", boardService.ordcount(paramMap));
 		paramMap.put("groupLayer", boardService.layercount(paramMap));
 		  
 		boardService.insertBoard(paramMap);

@@ -14,6 +14,8 @@ public interface BoardService {
 	public int totalcount() throws Exception;
 	// 다음글의 순서를 위해 count로 갯수를 확인함.
 	public int layercount(Map paramMap) throws Exception;
+	public int ordcount(Map paramMap) throws Exception;
+	
 	public void insertBoard(Map paramMap) throws Exception;
 	public void updateBoard(Map paramMap) throws Exception;
 	public void updateBoardOrd() throws Exception;

@@ -65,4 +65,9 @@ public class BoardServiceImpl extends BaseAbstractServiceImpl implements BoardSe
 		return boardDao.layercount(paramMap);
 	}
 
+	@Override
+	public int ordcount(Map paramMap) throws Exception {
+		return boardDao.ordcount(paramMap);
+	}
+
 }

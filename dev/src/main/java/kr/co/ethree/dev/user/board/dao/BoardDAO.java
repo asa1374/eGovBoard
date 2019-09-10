@@ -30,6 +30,9 @@ public class BoardDAO extends BaseAbstractDAO{
 	public int layercount(Map paramMap) throws Exception {
 		return sqlSession.selectOne("userBoardMapper.layercount",paramMap);
 	}
+	public int ordcount(Map paramMap) throws Exception {
+		return sqlSession.selectOne("userBoardMapper.ordcount",paramMap);
+	}
 	public void insertBoard(Map paramMap) throws Exception {
 		sqlSession.insert("userBoardMapper.insertBoard",paramMap);
 	}

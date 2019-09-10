@@ -53,25 +53,33 @@
 	</insert>
 
 	<select id="selectBoardList" parameterType="hMap" resultType="egovMap">
-		<include refid="pagingStr" />
+	SELECT A.*
+	FROM (
 		SELECT  board_seq
 				,board_title
 				,user_id
 				,board_date
+				,board_content
+				,user_auth
+				,file_name
+				,file_size
 				,original_no
 				,group_ord
 				,group_layer
 		FROM 	BOARD_DATA
+	    ORDER BY original_no DESC, group_layer
 		<choose>
 	        <when test="notice != null and notice != ''">
+					LIMIT 5 OFFSET #{startRow}
+					) as A
 	                WHERE   user_auth = 'A'
 	        </when>
 	        <otherwise>
+					LIMIT 10 OFFSET #{startRow}
+					) as A
 	                WHERE   user_auth = 'U'
 	        </otherwise>
     	</choose>
-		ORDER BY COALESCE(original_no,board_seq) DESC, group_layer ASC
-		<include refid="pagingEnd" />
 	</select>
 	
 	<select id="selectUserList" parameterType="hMap" resultType="egovMap">
@@ -117,6 +125,12 @@
 		SELECT	COUNT(*)
 		FROM board_data
 		WHERE original_no = #{originalNo} AND group_ord = #{groupOrd}
+	</select>
+	
+	<select id="ordcount" parameterType="hMap" resultType="int">
+		SELECT	COUNT(*)
+		FROM board_data
+		WHERE original_no = #{originalNo}
 	</select>
 	
 	<select id="usertotalcount" resultType="int">
